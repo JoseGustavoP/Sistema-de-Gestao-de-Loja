@@ -1,0 +1,39 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/listar_produto.css' %}">
+{% endblock %}
+{% block corpo %}
+<div id="layoutSidenav_content">
+    <main>
+        <h2 class="my-4">Lista de Vendas do Dia</h2>
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Venda ID</th>
+                    <th>Total</th>
+                    <th>Data</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for venda in vendas %}
+                {% if venda.total > 0 %}
+                <tr>
+                    <td>{{ venda.id }}</td>
+                    <td>R${{ venda.total }}</td>
+                    <td>{{ venda.data_hora }}</td>
+                    <td><a href="{% url 'nota_fiscal' venda.id %}" class="myapp-btn myapp-btn-finish">NOTA FISCAL</a>
+                    </td>
+                </tr>
+                {% endif %}
+                {% empty %}
+                <tr>
+                    <td colspan="4">Nenhuma venda realizada hoje.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock %}

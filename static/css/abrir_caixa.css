@@ -1,0 +1,135 @@
+.corpo{
+    background: #312d2d;
+}
+ul,h5{
+    color: white;
+    
+}
+h2, h3{
+    color: #000;
+}
+.central-container {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+    padding-top: 5%;
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.products-list {
+    flex-basis: 60%;
+}
+
+.product-actions {
+    flex-basis: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.sale-actions {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.input-custom, .myapp-btn {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.myapp-btn-add, .myapp-btn-discount, .myapp-btn-finish, .myapp-btn-new {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+}
+
+.myapp-btn-finish, .myapp-btn-new {
+    background-color: #ffcb00;
+    width: 500px;
+}
+
+.myapp-btn-add:hover, .myapp-btn-discount:hover, .myapp-btn-finish:hover, .myapp-btn-new:hover,
+.myapp-btn-add:focus, .myapp-btn-discount:focus, .myapp-btn-finish:focus, .myapp-btn-new:focus,
+.myapp-btn-add:active, .myapp-btn-discount:active, .myapp-btn-finish:active, .myapp-btn-new:active {
+    background-color: #ffcb00; /* Cor constante sem mudança */
+    color: white; /* Mantém a cor do texto */
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+    .products-list, .product-actions, .sale-actions {
+        flex-basis: 100%;
+    }
+    .sale-actions {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Estilo para destacar o total da venda e o total com desconto */
+.total-highlight {
+    background-color: white;
+    color: #3366ff; /* Cor destacada */
+    font-weight: bold;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.container1 {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+}
+
+.products-list {
+    text-align: left;
+}
+
+.products-list h2, .products-list h3 {
+    margin-bottom: 10px;
+}
+
+#listaItensVenda {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    max-height: 300px; /* Altura máxima antes de aparecer a barra de rolagem */
+    overflow-y: auto; /* Barra de rolagem vertical */
+    border-top: 1px solid #000;
+    border-bottom: 1px solid #000;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #000; /* Define a cor do texto dos itens da lista como preto */
+}
+
+#listaItensVenda li {
+    padding: 5px 0;
+    border-bottom: 1px dotted #ccc;
+}
+
+#listaItensVenda li:last-child {
+    border-bottom: none;
+}
+
+

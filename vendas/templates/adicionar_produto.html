@@ -1,0 +1,66 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/abrir_caixa.css' %}">
+{% endblock %}
+
+{% block corpo %}
+<div id="layoutSidenav_content" class="corpo">
+    <main>
+        <div class="container">
+            <div class="container1">
+            <div class="products-list">
+                <h2>Adicionar Produtos à Venda</h2>
+                <h3>Produtos na Venda</h3>
+                <ul id="listaItensVenda">
+                    {% for item in venda.itens.all %}
+                    <li>{{ item.produto.nome }} - Quantidade: {{ item.quantidade }} - {{ item.produto.preco_venda }}</li>
+                    {% empty %}
+                    <li>Nenhuma produto adicionado.</li>
+                    {% endfor %}
+                </ul>
+            </div>
+            </div>
+            <div class="product-actions">
+                <form method="post" id="formAdicionarProduto">
+                    {% csrf_token %}
+                    <input type="text" class="input-custom" id="buscaProduto" placeholder="Buscar produto por nome...">
+                    <!-- Adicione o atributo "autofocus" para focar automaticamente no campo de busca por código de barras -->
+                    <input type="text" class="input-custom" id="buscaCodigoBarras" placeholder="Buscar por código de barras..." autofocus>
+                    <select id="listaProdutos" name="produto_id" class="input-custom">
+                        {% for produto in produtos %}
+                        <option value="{{ produto.id }}" data-codigo-barras="{{ produto.codigo_barras }}">{{ produto.nome }}</option>
+                        {% endfor %}
+                    </select>
+                    <input type="number" name="quantidade" min="1" value="1" class="input-custom">
+                    <input type="submit" value="Adicionar Produto" class="myapp-btn myapp-btn-add">
+                </form>
+                <form method="post" action="{% url 'adicionar_produto' venda.id %}" class="discount-form">
+                    {% csrf_token %}
+                    <input type="number" name="desconto" min="0" max="100" step="0.01" placeholder="Desconto (%)" class="input-custom">
+                    <input type="submit" value="Aplicar Desconto" class="myapp-btn myapp-btn-discount">
+                </form>
+                <h5>Total: <span class="total-highlight">{{ venda.total }}R$</span></h5>
+                <h5>Total com Desconto de {{ venda.desconto }}%: <span class="total-highlight">{{ venda.total_com_desconto }}R$</span></h5>
+            </div>
+        </div>
+        <div class="sale-actions">
+            <a href="{% url 'iniciar_venda' %}" class="myapp-btn myapp-btn-new">Abrir Nova Venda</a>
+            <a href="{% url 'finalizar_venda' venda.id %}" class="myapp-btn myapp-btn-finish">Finalizar Venda</a>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/jscaixa.js' %}"></script>
+<script>
+// Focar automaticamente no campo de busca por código de barras
+document.addEventListener("DOMContentLoaded", function() {
+    var buscaCodigoBarras = document.getElementById("buscaCodigoBarras");
+    buscaCodigoBarras.focus();
+});
+</script>
+{% endblock %}

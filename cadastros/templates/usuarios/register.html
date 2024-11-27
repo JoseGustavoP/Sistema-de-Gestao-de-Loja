@@ -1,0 +1,44 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/register.css' %}"> <!-- Assumindo que os estilos são aplicáveis -->
+{% endblock %}
+
+{% block corpo %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="form-group">
+            <h2>Cadastrar Novo Usuário</h2>
+            <form method="POST" id="registerForm">
+                {% csrf_token %}
+                <label for="id_username">Usuário:</label>
+                {{ form.username }}
+
+                <label for="id_email">E-mail:</label>
+                {{ form.email }}
+
+                <label for="id_password1">Senha:</label>
+                {{ form.password1 }}
+
+                <label for="id_password2">Confirmação da Senha:</label>
+                {{ form.password2 }}
+                
+                <label for="id_is_staff">Administrador:</label>
+                {{ form.is_staff }}
+
+                <!-- Elemento para exibir mensagens de erro -->
+                <div id="error-message" style="color: red;"></div>
+
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </form>
+        </div>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/registraruser.js' %}"></script>
+
+{% endblock %}

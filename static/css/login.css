@@ -1,0 +1,83 @@
+/* Estilos anteriores permanecem iguais */
+body,
+html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f2f5;
+}
+
+#layoutSidenav_content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-group {
+    background-color: white;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: fit-content;
+}
+
+.form-group h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-image {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    background-image: url('{% static ' path/to/your/image.jpg' %}');
+    background-size: cover;
+    background-position: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+form label {
+    margin: 10px 0 5px;
+}
+
+form input[type="text"],
+form input[type="password"] {
+    margin-bottom: 20px;
+    width: 100%;
+    padding: 10px;
+}
+
+form button[type="submit"] {
+    cursor: pointer;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #312d2d;
+    /* Cor primária do botão */
+    color: white;
+    transition: background-color 0.2s ease-in-out;
+}
+
+form button[type="submit"]:hover {
+    background-color: #1a1919;
+    /* Cor mais escura para o hover */
+}
+.messages {
+    margin-top: 20px; /* Espaço acima das mensagens */
+    color: #D8000C; /* Cor vermelha para indicar erro, ajuste conforme necessário */
+    background-color: #FFD2D2; /* Cor de fundo leve para destacar a mensagem, ajuste conforme necessário */
+    border: 1px solid #D8000C; /* Borda vermelha */
+    padding: 10px;
+    border-radius: 5px;
+    width: 100%; /* Ou um valor específico que se adeque ao layout */
+    text-align: center; /* Centraliza o texto da mensagem */
+}

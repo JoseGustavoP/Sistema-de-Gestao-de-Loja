@@ -1,0 +1,64 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/adicionar_produto.css' %}">
+{% endblock %}
+{% block corpo %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="box-formulario">
+            <div class="formulario">
+                <h1 class="title-form">Cadastro de Produto
+                    <span class="subtitle-form">Adicione os detalhes do produto.</span>
+                </h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <!-- Nome do Produto -->
+                    <span>
+                        <input type="text" class="input" id="id_nome" name="nome" placeholder="Nome do Produto"
+                            autocomplete="off" value="{{ form.nome.value|default_if_none:'' }}">
+                        <label for="id_nome"> <i class="icon icon-user-1"></i> </label>
+                    </span>
+                    <!-- Tipo do Produto -->
+                    <span>
+                        <input type="text" class="input" id="id_tipo" name="tipo" placeholder="Tipo do Produto"
+                            autocomplete="off" value="{{ form.tipo.value|default_if_none:'' }}">
+                        <label for="id_tipo"> <i class="icon icon-info"></i> </label>
+                    </span>
+                    <!-- Código de Barras -->
+                    <span>
+                        <input type="text" class="input" id="id_codigo_barras" name="codigo_barras"
+                            placeholder="Código de Barras" autocomplete="off"
+                            value="{{ form.codigo_barras.value|default_if_none:'' }}">
+                        <label for="id_codigo_barras"> <i class="icon icon-barcode"></i> </label>
+                    </span>
+                    <!-- Preço de Compra -->
+                    <span>
+                        <input type="number" step="0.01" class="input" id="id_preco_compra" name="preco_compra"
+                            placeholder="Preço de Compra" autocomplete="off"
+                            value="{{ form.preco_compra.value|default_if_none:'' }}">
+                        <label for="id_preco_compra"> <i class="icon icon-money"></i> </label>
+                    </span>
+                    <span>
+                        <input type="number" step="0.01" class="input" id="id_porcentagem_lucro" name="porcentagem_lucro"
+                            placeholder="Porcentagem de Lucro" autocomplete="off"
+                            value="{{ form.porcentagem_lucro.value|default_if_none:'80.00' }}">
+                        <label for="id_porcentagem_lucro"> <i class="icon icon-percentage"></i> </label>
+                    </span>
+                    <!-- Imagem do Produto -->
+                    <span>
+                        <input type="file" class="input" id="id_imagem" name="imagem">
+                        <label for="id_imagem"> <i class="icon icon-upload"></i> </label>
+                    </span>
+                    <span>
+                        <input type="submit" value="Cadastrar Produto" class="botao rotacao">
+                    </span>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/cadastro_produto.js' %}"></script>
+{% endblock %}

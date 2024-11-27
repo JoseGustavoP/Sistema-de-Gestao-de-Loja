@@ -1,0 +1,102 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/listar_produto.css' %}">
+{% endblock %}
+{% block corpo %}
+<div id="layoutSidenav_content">
+    <main>
+        <h2 class="my-4">Lista de Produtos</h2>
+        <!-- Formulário de Pesquisa -->
+        <form id="searchForm">
+            <div class="form-group">
+                <!-- Adicione o atributo "autofocus" para focar automaticamente no campo -->
+                <input type="text" name="q" id="searchInput" class="form-control"
+                    placeholder="Pesquisar por nome ou código de barras" autocomplete="off" autofocus>
+            </div>
+        </form>
+
+        <table class="table table-bordered table-hover">
+            <thead class="thead-dark">
+                <tr>
+                    <th>Imagem</th>
+                    <th>Nome</th>
+                    <th>Tipo</th>
+                    <th>Código de Barras</th>
+                    <th>Preço de Compra</th>
+                    <th>Preço de Venda</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produto in produtos %}
+                <tr>
+                    <td>
+                        {% if produto.imagem %}
+                        <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}"
+                            style="width: 100px; height: 100px; object-fit: cover;">
+                        {% else %}
+                        <p>Sem imagem</p> <!-- Ou você pode colocar uma imagem padrão aqui -->
+                        {% endif %}
+                    </td>
+                    <td>{{ produto.nome }}</td>
+                    <td>{{ produto.tipo }}</td>
+                    <td>{{ produto.codigo_barras }}</td>
+                    <td>{{ produto.preco_compra }} R$</td>
+                    <td>{{ produto.preco_venda }} R$</td>
+                    <td>
+                        <!-- Botão para abrir o modal de edição -->
+                        <a href="{% url 'update_produto' produto.id %}" class="btn btn-primary"><i
+                                class="fas fa-pencil-alt"></i> <!-- Lápis (edição) --></a>
+
+                        <!-- Botão para abrir o modal de exclusão -->
+                        <button type="button" class="btn btn-danger" data-toggle="modal"
+                            data-target="#deleteModal{{ produto.id }}">
+                            <i class="fas fa-trash"></i> <!-- Lixeira -->
+                        </button>
+
+                        <!-- Modal de Exclusão -->
+                        <div class="modal fade" id="deleteModal{{ produto.id }}" tabindex="-1" role="dialog"
+                            aria-labelledby="deleteModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="deleteModalLabel">Confirmar Exclusão</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        Tem certeza que deseja excluir o produto "{{ produto.nome }}"?
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Cancelar</button>
+                                        <a href="{% url 'delete_produto' produto.id %}"
+                                            class="btn btn-danger">Excluir</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7">Nenhum produto encontrado.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    // Focar automaticamente no campo de pesquisa
+    var searchInput = document.getElementById("searchInput");
+    searchInput.focus();
+});
+</script>
+{% endblock %}

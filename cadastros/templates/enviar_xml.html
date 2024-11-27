@@ -1,0 +1,26 @@
+{% extends 'modelo.html' %}
+{% load static %}
+{% block estilo %}
+<link rel="stylesheet" href="{% static 'css/adicionar_produto.css' %}">
+{% endblock %}
+{% block corpo %}
+<div id="layoutSidenav_content">
+    <main>
+        <div class="box-formulario">
+            <div class="formulario">
+                <h1 class="title-form">Enviar XML
+                </h1>
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Enviar</button>
+                </form>
+                </form>
+            </div>
+        </div>
+    </main>
+</div>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'js/cadastro_produto.js' %}"></script>
+{% endblock %}

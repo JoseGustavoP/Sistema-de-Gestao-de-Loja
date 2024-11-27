@@ -1,0 +1,101 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/notafiscal.css' %}">
+    <title>Nota Fiscal - Venda {{ venda.id }}</title>
+</head>
+
+<body onload="window.print();">
+    <div class="areaNfce">
+        <table class="mainNfce">
+            <thead>
+                <tr>
+                    <td id="companyLogo">
+                        <div class="logo">
+                            <img src="{% static 'img/JD__5_-removebg-preview.png' %}"
+                                onerror="javascript:this.src='data:image/png;base64,'" />
+                        </div>
+                    </td>
+                    <td class="titMain">
+                        <p>
+                            <span class="label">CNPJ: 10.607.254/0001-26</span><span style="font-weight: bold">&nbsp;jd
+                                Importados Variedades</span>
+                        </p>
+                        <p>{{ venda.usuario.empresa.endereco_completo }}</p>
+                        <p>Documento Auxiliar da Nota Fiscal de Consumidor Eletrônica</p>
+                        <div class="venda-info">
+                            <p>ID da Venda: {{ venda.id }}</p>
+                            <p>Data da Venda: {{ venda.data_hora|date:"d/m/Y" }}</p>
+                            <p>Hora da Venda: {{ venda.data_hora|date:"H:i" }}</p>
+                        </div>                        
+                    </td>
+                </tr>
+            </thead>
+        </table>
+
+        <!-- Insira aqui a lógica de exibição da tabela de contingência, se aplicável -->
+
+        <table class="formPayment">
+            <tr>
+                <td><strong>Código - Descrição</strong></td>
+                <td class="tdRight"><strong>Qtde</strong></td>
+                <td class="tRight"><strong>Vl Unit.</strong></td>
+                <td class="tRight"><strong>Vl Total</strong></td>
+            </tr>
+            {% for item in itens %}
+            <tr>
+                <td>{{ item.produto.codigo_barras }} - {{ item.produto.nome }}</td>
+                <td class="tdRight">{{ item.quantidade }}</td>
+                <td class="tRight">{{ item.preco_unitario }}</td>
+                <td class="tRight">{{ item.total_item|floatformat:2 }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <table class="descQt">
+            <tr>
+                <td>Itens unitários: <span class="td-text-right">{{ itens|length }}</span></td>
+            </tr>
+            <tr>
+                <td>Valor total R$ <span class="td-text-right">{{ venda.total|floatformat:2 }}</span></td>
+            </tr>
+            <tr id="discount">
+                <td>Desconto R$ <span class="td-text-right">{{ venda.desconto|floatformat:2 }}</span></td>
+            </tr>
+            <tr>
+                <td class="last"><strong>Valor a Pagar R$ <span class="td-text-right">
+                           {{ venda.aplicar_desconto|floatformat:2 }}
+                        </span></strong></td>
+            </tr>
+        </table>
+
+        <!-- Adicione aqui as tabelas de formas de pagamento, dados do consumidor, consulta SEFAZ, QR Code, mensagens fiscais do estado, e outras informações conforme necessário, adaptando os placeholders para o seu contexto -->
+
+    </div>
+    <script>
+        function afterPrint() {
+            // Redireciona para a URL de iniciar nova venda
+            window.location.href = '{% url "iniciar_venda" %}';
+        }
+    
+        // Adiciona listener para quando a janela de impressão é fechada
+        if (window.matchMedia) {
+            var mediaQueryList = window.matchMedia('print');
+            mediaQueryList.addListener(function(mql) {
+                if (!mql.matches) {
+                    afterPrint();
+                }
+            });
+        }
+    
+        // Para navegadores mais antigos
+        window.onafterprint = afterPrint;
+    </script>
+    
+    
+</body>
+
+</html>

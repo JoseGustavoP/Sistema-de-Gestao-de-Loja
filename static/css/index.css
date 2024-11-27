@@ -1,0 +1,19 @@
+.foto_de_inicio {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 100px; /* Ajuste este valor conforme necessário */
+    width: 100%; /* Ajuste a largura conforme necessário */
+}
+
+
+#layoutSidenav_content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Altura mínima da tela */
+}
+
+body {
+    background-color: #312d2d;
+}
