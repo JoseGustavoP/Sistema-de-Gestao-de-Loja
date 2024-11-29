@@ -7,7 +7,7 @@
 <div id="layoutSidenav_content">
     <main>
         <div class="box-formulario">
-            <div class="formulario">
+            <div class="formulario row">
                 <h1 class="title-form">Cadastro de Produto
                     <span class="subtitle-form">Adicione os detalhes do produto.</span>
                 </h1>
@@ -40,8 +40,8 @@
                         <label for="id_preco_compra"> <i class="icon icon-money"></i> </label>
                     </span>
                     <span>
-                        <input type="number" step="0.01" class="input" id="id_porcentagem_lucro" name="porcentagem_lucro"
-                            placeholder="Porcentagem de Lucro" autocomplete="off"
+                        <input type="number" step="0.01" class="input" id="id_porcentagem_lucro"
+                            name="porcentagem_lucro" placeholder="Porcentagem de Lucro" autocomplete="off"
                             value="{{ form.porcentagem_lucro.value|default_if_none:'80.00' }}">
                         <label for="id_porcentagem_lucro"> <i class="icon icon-percentage"></i> </label>
                     </span>
@@ -51,7 +51,9 @@
                         <label for="id_imagem"> <i class="icon icon-upload"></i> </label>
                     </span>
                     <span>
-                        <input type="submit" value="Cadastrar Produto" class="botao rotacao">
+                        <div class="col-12">
+                            <input type="submit" value="Cadastrar Produto" class="botao rotacao col-12">
+                        </div>
                     </span>
                 </form>
             </div>
