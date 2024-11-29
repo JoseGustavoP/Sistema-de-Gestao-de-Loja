@@ -67,14 +67,12 @@
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    background-color: #312d2d;
 
 }
 
 .formulario {
 
     width: 700px;
-    background: #312d2d;
     padding: 60px 5%;
     text-align: center;
 
