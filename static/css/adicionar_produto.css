@@ -7,7 +7,7 @@
     font-weight: 300;
     font-size: 45px;
     letter-spacing: 6px;
-    color: #ffffff;
+    color: #000000;
     -webkit-transition: all 0.4s ease 0s;
     -o-transition: all 0.4s ease 0s;
     transition: all 0.4s ease 0s;
@@ -53,7 +53,7 @@
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 10px;
-    color: #ffffff;
+    color: #000000;
     padding-bottom: 25px;
     margin: 25px 0;
 
@@ -94,8 +94,8 @@
     padding: 10px 0 13px 95px;
     font-family: "Open Sans", sans;
     font-weight: 400;
-    color: #4C4C4C;
-    background: #ffffff;
+    color: #ffffff;
+    background: #000000;
     border: 0;
     border-radius: 3px;
     outline: 0;
@@ -105,7 +105,7 @@
 
 .input::-webkit-input-placeholder {
 
-    color: #4C4C4C;
+    color: #ffffff;
     font-weight: 300;
 
 }
@@ -120,7 +120,7 @@
     padding: 10px 15px;
     text-shadow: 0 1px 0 rgba(19, 74, 70, 0.4);
     background: #ffcb00;
-    color: #ffffff;
+    color: #000000;
     transition: all .4s ease-in-out;
     border-top-left-radius: 3px;
     border-bottom-left-radius: 3px;
@@ -157,16 +157,16 @@
 
 .input:focus,
 .input:active {
-    color: #333333;
+    color: #ffffff;
     padding: 10px 0 13px 60px;
-    background: #fff;
+    background: #000000;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
 }
 
 .input:focus::-webkit-input-placeholder,
 .input:active::-webkit-input-placeholder {
-    color: #4C4C4C;
+    color: #ffffff;
 }
 
 .input:focus+label,
@@ -190,7 +190,7 @@
     padding: 10px 0 12px 95px;
     font-family: "Open Sans", sans;
     font-weight: 400;
-    color: #4C4C4C;
+    color: #fffefe;
     background: #ffffff;
     border: 0;
     border-radius: 3px;
@@ -263,7 +263,7 @@
 
 .textarea:focus::-webkit-input-placeholder,
 .gate:active::-webkit-input-placeholder {
-    color: #4C4C4C;
+    color: #ffffff;
 }
 
 .textarea:focus+label,
