@@ -13,4 +13,5 @@ urlpatterns = [
     path('usuarios/', views.listar_usuarios, name='listar_usuarios'),
     path('usuarios/delete/<int:user_id>/', views.delete_usuario, name='delete_usuario'),
     path('enviar-xml/', views.enviar_xml, name='enviar_xml'),
+
 ]

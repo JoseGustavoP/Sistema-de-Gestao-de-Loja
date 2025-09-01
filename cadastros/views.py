@@ -108,6 +108,10 @@ def user_login(request):
 
     return render(request, 'usuarios/login.html')
 
+
+
+
+
 @login_required
 def cadastrar_produto(request):
     if request.method == 'POST':
@@ -121,22 +125,29 @@ def cadastrar_produto(request):
             # Verificar se já existe um produto com o mesmo nome
             produto_existente = Produto.objects.filter(nome=nome, usuario=usuario).first()
 
-            # Se existir, atualizar os dados do produto existente
             if produto_existente:
+                # Atualiza o produto existente
                 produto_existente.codigo_barras = codigo_barras
                 produto_existente.preco_compra = preco_compra
                 produto_existente.save()
                 messages.success(request, f"Produto '{produto_existente.nome}' atualizado com sucesso.")
             else:
-                # Caso contrário, criar um novo produto
+                # Cria um novo produto
                 produto = Produto(usuario=usuario, nome=nome, codigo_barras=codigo_barras, preco_compra=preco_compra)
                 produto.save()
                 messages.success(request, f"Produto '{produto.nome}' cadastrado com sucesso.")
-            return redirect('inicio')
+
+            # Pega venda_id do POST (ou GET, se preferir)
+            venda_id = request.POST.get('venda_id')
+            if venda_id:
+                return redirect('adicionar_produto', venda_id=venda_id)
+
+            # Se não houver venda_id, redireciona para listar produtos
+            return redirect('listar_produtos')
     else:
         form = ProdutoForm()
-    return render(request, 'cadastrar_produto.html', {'form': form})
 
+    return render(request, 'cadastrar_produto.html', {'form': form})
 @user_passes_test(is_staff_user)
 def listar_usuarios(request):
     usuarios = User.objects.all()

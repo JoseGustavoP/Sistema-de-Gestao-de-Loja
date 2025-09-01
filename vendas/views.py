@@ -132,6 +132,41 @@ def remover_produto(request, venda_id, item_id):
 
 from .forms import ProdutoForm
 
+def cadastrar_produto_ajax(request):
+    if request.method == "POST":
+        form = ProdutoForm(request.POST, request.FILES)
+        if form.is_valid():
+            nome = form.cleaned_data['nome']
+            usuario = request.user
+            produto_existente = Produto.objects.filter(nome=nome, usuario=usuario).first()
+            if produto_existente:
+                # Atualiza
+                produto_existente.codigo_barras = form.cleaned_data['codigo_barras']
+                produto_existente.preco_compra = form.cleaned_data['preco_compra']
+                produto_existente.save()
+                return JsonResponse({
+                    "status": "atualizado",
+                    "mensagem": f"Produto '{produto_existente.nome}' atualizado com sucesso.",
+                    "produto_id": produto_existente.id,
+                    "nome": produto_existente.nome
+                })
+            else:
+                # Cria novo
+                produto = Produto.objects.create(
+                    usuario=usuario,
+                    nome=nome,
+                    codigo_barras=form.cleaned_data['codigo_barras'],
+                    preco_compra=form.cleaned_data['preco_compra']
+                )
+                return JsonResponse({
+                    "status": "cadastrado",
+                    "mensagem": f"Produto '{produto.nome}' cadastrado com sucesso.",
+                    "produto_id": produto.id,
+                    "nome": produto.nome
+                })
+        else:
+            return JsonResponse({"status": "erro", "erros": form.errors})
+    return JsonResponse({"status": "erro", "erros": "Método inválido"})
 @login_required
 def adicionar_produto(request, venda_id):
     venda = get_object_or_404(Venda, id=venda_id)
