@@ -139,10 +139,12 @@ def cadastrar_produto_ajax(request):
             nome = form.cleaned_data['nome']
             usuario = request.user
             produto_existente = Produto.objects.filter(nome=nome, usuario=usuario).first()
+
             if produto_existente:
-                # Atualiza
+                # Atualiza produto existente
                 produto_existente.codigo_barras = form.cleaned_data['codigo_barras']
                 produto_existente.preco_compra = form.cleaned_data['preco_compra']
+                produto_existente.preco_venda = form.cleaned_data['preco_venda']  # ✅ Adicionado
                 produto_existente.save()
                 return JsonResponse({
                     "status": "atualizado",
@@ -151,12 +153,13 @@ def cadastrar_produto_ajax(request):
                     "nome": produto_existente.nome
                 })
             else:
-                # Cria novo
+                # Cria novo produto
                 produto = Produto.objects.create(
                     usuario=usuario,
                     nome=nome,
                     codigo_barras=form.cleaned_data['codigo_barras'],
-                    preco_compra=form.cleaned_data['preco_compra']
+                    preco_compra=form.cleaned_data['preco_compra'],
+                    preco_venda=form.cleaned_data['preco_venda']  # ✅ Adicionado
                 )
                 return JsonResponse({
                     "status": "cadastrado",
@@ -167,6 +170,7 @@ def cadastrar_produto_ajax(request):
         else:
             return JsonResponse({"status": "erro", "erros": form.errors})
     return JsonResponse({"status": "erro", "erros": "Método inválido"})
+
 @login_required
 def adicionar_produto(request, venda_id):
     venda = get_object_or_404(Venda, id=venda_id)
