@@ -7,6 +7,7 @@ from django.http import JsonResponse
 from decimal import Decimal
 from django.utils import timezone
 from django.contrib import messages
+from cadastros.forms import ProdutoForm
 
 @login_required
 def nota_fiscal(request, venda_id):
@@ -127,3 +128,49 @@ def remover_produto(request, venda_id, item_id):
 
     item.delete()
     return redirect('adicionar_produto', venda_id=venda.id)
+
+
+from .forms import ProdutoForm
+
+@login_required
+def adicionar_produto(request, venda_id):
+    venda = get_object_or_404(Venda, id=venda_id)
+
+    if venda.usuario != request.user:
+        messages.error(request, "Você não tem permissão para modificar esta venda.")
+        return redirect('alguma_url_para_redirecionar')
+
+    if request.method == 'POST':
+        if 'produto_id' in request.POST:
+            produto_id = request.POST.get('produto_id')
+            quantidade = int(request.POST.get('quantidade'))
+
+            try:
+                produto = Produto.objects.get(id=produto_id, usuario=request.user)
+                ItemVenda.objects.create(
+                    venda=venda,
+                    produto=produto,
+                    quantidade=quantidade,
+                    preco_unitario=produto.preco_venda
+                )
+                venda.total += produto.preco_venda * quantidade
+                venda.save()
+            except Produto.DoesNotExist:
+                messages.error(request, "Produto não encontrado ou você não tem permissão para adicioná-lo.")
+
+        elif 'desconto' in request.POST:
+            desconto = Decimal(request.POST.get('desconto', '0'))
+            venda.desconto = desconto
+            venda.total_com_desconto = venda.total - (venda.total * desconto / Decimal('100'))
+            venda.save()
+
+    produtos = Produto.objects.filter(usuario=request.user)
+    form = ProdutoForm()  # <--- FORM PARA O MODAL
+
+    return render(request, 'adicionar_produto.html', {
+        'venda': venda,
+        'produtos': produtos,
+        'desconto': venda.desconto,
+        'total_com_desconto': venda.total_com_desconto,
+        'form': form,  # <--- ENVIA PARA O TEMPLATE
+    })
