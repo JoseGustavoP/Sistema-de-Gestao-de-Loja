@@ -108,3 +108,22 @@ def vendas_do_dia(request):
     data_atual = timezone.now().date()
     vendas = Venda.objects.filter(data_hora__date=data_atual, usuario=request.user)
     return render(request, 'vendas_do_dia.html', {'vendas': vendas})
+
+@login_required
+def remover_produto(request, venda_id, item_id):
+    venda = get_object_or_404(Venda, id=venda_id)
+
+    # Verifica se o usuário da venda é o mesmo que está logado
+    if venda.usuario != request.user:
+        messages.error(request, "Você não tem permissão para modificar esta venda.")
+        return redirect('adicionar_produto', venda_id=venda.id)
+
+    item = get_object_or_404(ItemVenda, id=item_id, venda=venda)
+
+    # Atualiza o total da venda antes de deletar
+    venda.total -= item.preco_unitario * item.quantidade
+    venda.total_com_desconto = venda.total - (venda.total * venda.desconto / Decimal('100'))
+    venda.save()
+
+    item.delete()
+    return redirect('adicionar_produto', venda_id=venda.id)

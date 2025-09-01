@@ -10,24 +10,33 @@
 <div id="layoutSidenav_content" class="corpo">
     <main>
         <div class="container">
+
+            <!-- Lista de itens da venda -->
             <div class="container1">
-            <div class="products-list">
-                <h2>Adicionar Produtos à Venda</h2>
-                <h3>Produtos na Venda</h3>
-                <ul id="listaItensVenda">
-                    {% for item in venda.itens.all %}
-                    <li>{{ item.produto.nome }} - Quantidade: {{ item.quantidade }} - {{ item.produto.preco_venda }}</li>
-                    {% empty %}
-                    <li>Nenhuma produto adicionado.</li>
-                    {% endfor %}
-                </ul>
+                <div class="products-list">
+                    <h2>Adicionar Produtos à Venda</h2>
+                    <h3>Produtos na Venda</h3>
+                    <ul id="listaItensVenda">
+                        {% for item in venda.itens.all %}
+                        <li style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>{{ item.produto.nome }} - Quantidade: {{ item.quantidade }} - {{ item.produto.preco_venda }}R$</span>
+                            <form method="post" action="{% url 'remover_produto' venda.id item.id %}" style="margin:0;">
+                                {% csrf_token %}
+                                <button type="submit" class="myapp-btn myapp-btn-remove" style="padding: 2px 6px; font-size: 0.8rem;">❌ Remover</button>
+                            </form>
+                        </li>
+                        {% empty %}
+                        <li>Nenhuma produto adicionado.</li>
+                        {% endfor %}
+                    </ul>
+                </div>
             </div>
-            </div>
+
+            <!-- Formulário para adicionar produtos -->
             <div class="product-actions">
                 <form method="post" id="formAdicionarProduto">
                     {% csrf_token %}
                     <input type="text" class="input-custom" id="buscaProduto" placeholder="Buscar produto por nome...">
-                    <!-- Adicione o atributo "autofocus" para focar automaticamente no campo de busca por código de barras -->
                     <input type="text" class="input-custom" id="buscaCodigoBarras" placeholder="Buscar por código de barras..." autofocus>
                     <select id="listaProdutos" name="produto_id" class="input-custom">
                         {% for produto in produtos %}
@@ -37,19 +46,27 @@
                     <input type="number" name="quantidade" min="1" value="1" class="input-custom">
                     <input type="submit" value="Adicionar Produto" class="myapp-btn myapp-btn-add">
                 </form>
+
+                <!-- Formulário para aplicar desconto -->
                 <form method="post" action="{% url 'adicionar_produto' venda.id %}" class="discount-form">
                     {% csrf_token %}
                     <input type="number" name="desconto" min="0" max="100" step="0.01" placeholder="Desconto (%)" class="input-custom">
                     <input type="submit" value="Aplicar Desconto" class="myapp-btn myapp-btn-discount">
                 </form>
+
+                <!-- Totais -->
                 <h5>Total: <span class="total-highlight">{{ venda.total }}R$</span></h5>
                 <h5>Total com Desconto de {{ venda.desconto }}%: <span class="total-highlight">{{ venda.total_com_desconto }}R$</span></h5>
             </div>
+
         </div>
+
+        <!-- Ações de venda -->
         <div class="sale-actions">
             <a href="{% url 'iniciar_venda' %}" class="myapp-btn myapp-btn-new">Abrir Nova Venda</a>
             <a href="{% url 'finalizar_venda' venda.id %}" class="myapp-btn myapp-btn-finish">Finalizar Venda</a>
         </div>
+
     </main>
 </div>
 {% endblock %}
