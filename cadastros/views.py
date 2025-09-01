@@ -117,37 +117,61 @@ def cadastrar_produto(request):
     if request.method == 'POST':
         form = ProdutoForm(request.POST, request.FILES)
         if form.is_valid():
-            nome = form.cleaned_data['nome']
             usuario = request.user
-            codigo_barras = form.cleaned_data['codigo_barras']
-            preco_compra = form.cleaned_data['preco_compra']
 
-            # Verificar se já existe um produto com o mesmo nome
+            # Pega os dados do form manualmente
+            nome = form.cleaned_data.get('nome')
+            codigo_barras = form.cleaned_data.get('codigo_barras')
+            preco_compra = form.cleaned_data.get('preco_compra')  # pode ser None
+            preco_venda = form.cleaned_data.get('preco_venda')    # pode ser None
+            porcentagem_lucro = form.cleaned_data.get('porcentagem_lucro') or Decimal('80.0')
+            imagem = form.cleaned_data.get('imagem')
+            tipo = form.cleaned_data.get('tipo')
+
+            # Se preco_venda não for informado, calcula com preco_compra e porcentagem
+            if not preco_venda and preco_compra:
+                preco_venda = preco_compra * (Decimal('1.0') + porcentagem_lucro / Decimal('100.0'))
+
+            # Verificar se já existe um produto com o mesmo nome do usuário
             produto_existente = Produto.objects.filter(nome=nome, usuario=usuario).first()
 
             if produto_existente:
-                # Atualiza o produto existente
+                # Atualiza o produto existente manualmente
                 produto_existente.codigo_barras = codigo_barras
                 produto_existente.preco_compra = preco_compra
+                produto_existente.preco_venda = preco_venda
+                produto_existente.porcentagem_lucro = porcentagem_lucro
+                produto_existente.tipo = tipo
+                if imagem:
+                    produto_existente.imagem = imagem
                 produto_existente.save()
                 messages.success(request, f"Produto '{produto_existente.nome}' atualizado com sucesso.")
             else:
-                # Cria um novo produto
-                produto = Produto(usuario=usuario, nome=nome, codigo_barras=codigo_barras, preco_compra=preco_compra)
+                # Cria um novo produto manualmente
+                produto = Produto(
+                    usuario=usuario,
+                    nome=nome,
+                    codigo_barras=codigo_barras,
+                    preco_compra=preco_compra,
+                    preco_venda=preco_venda,
+                    porcentagem_lucro=porcentagem_lucro,
+                    tipo=tipo,
+                    imagem=imagem
+                )
                 produto.save()
                 messages.success(request, f"Produto '{produto.nome}' cadastrado com sucesso.")
 
-            # Pega venda_id do POST (ou GET, se preferir)
+            # Redireciona de acordo com venda_id, se houver
             venda_id = request.POST.get('venda_id')
             if venda_id:
                 return redirect('adicionar_produto', venda_id=venda_id)
 
-            # Se não houver venda_id, redireciona para listar produtos
             return redirect('listar_produtos')
     else:
         form = ProdutoForm()
 
     return render(request, 'cadastrar_produto.html', {'form': form})
+
 @user_passes_test(is_staff_user)
 def listar_usuarios(request):
     usuarios = User.objects.all()

@@ -40,6 +40,12 @@
                         <label for="id_preco_compra"> <i class="icon icon-money"></i> </label>
                     </span>
                     <span>
+                        <input type="number" step="0.01" class="input" id="id_preco_venda" name="preco_venda"
+                            placeholder="Preço de Venda" autocomplete="off"
+                            value="{{ form.preco_venda.value|default_if_none:'' }}">
+                        <label for="id_preco_venda"> <i class="icon icon-money"></i> </label>
+                    </span>
+                    <span>
                         <input type="number" step="0.01" class="input" id="id_porcentagem_lucro" name="porcentagem_lucro"
                             placeholder="Porcentagem de Lucro" autocomplete="off" 
                             value="{{ form.porcentagem_lucro.value|default_if_none:'80.00' }}">

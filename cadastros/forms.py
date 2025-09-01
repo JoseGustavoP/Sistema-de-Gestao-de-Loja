@@ -32,5 +32,12 @@ class UserRegisterForm(UserCreationForm):
 class ProdutoForm(forms.ModelForm):
     class Meta:
         model = Produto
-        fields = ['nome', 'tipo', 'codigo_barras', 'preco_compra', 'porcentagem_lucro', 'imagem']
-        
+        fields = [
+            'nome',
+            'tipo',
+            'codigo_barras',
+            'preco_compra',
+            'porcentagem_lucro',
+            'preco_venda',   # agora aparece no form
+            'imagem'
+        ]
