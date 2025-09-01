@@ -1,0 +1,382 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<NFCeSimplificada xmlns:nfe="http://www.portalfiscal.inf.br/nfe" versao="1.0">
+  <ide>
+    <uf>RN</uf>
+    <numero>33304</numero>
+    <serie>010</serie>
+    <tipoDocumento>NFC-e</tipoDocumento>
+    <chaveAcesso>24250807840224000312650100000333041518005127</chaveAcesso>
+    <dataEmissao>2025-08-14T10:43:18-03:00</dataEmissao>
+    <dataAutorizacao>2025-08-14T10:43:21-03:00</dataAutorizacao>
+    <situacao>Autorizada</situacao>
+    <protocoloAutorizacao>224250274424772</protocoloAutorizacao>
+  </ide>
+
+  <emitente>
+    <razaoSocial>TECNOVOS IMPORTADOS LTDA</razaoSocial>
+    <cnpj>07840224000312</cnpj>
+    <ie>205391397</ie>
+    <endereco>
+      <logradouro>PRESIDENTE BANDEIRA</logradouro>
+      <numero>679</numero>
+      <complemento>002</complemento>
+      <bairro>ALECRIM</bairro>
+      <municipio>NATAL</municipio>
+      <uf>RN</uf>
+      <cep>59031200</cep>
+    </endereco>
+  </emitente>
+
+  <destinatario>
+    <nome>JOSE DENIS QUINCO 05546546441</nome>
+    <cnpj>10607254000126</cnpj>
+    <endereco>
+      <logradouro>R ALTO DO BILU</logradouro>
+      <numero>018</numero>
+      <bairro>CENTRO</bairro>
+      <municipio>SENADOR ELOI DE SOUZA</municipio>
+      <uf>RN</uf>
+      <cep>59250000</cep>
+    </endereco>
+  </destinatario>
+
+  <!-- Itens -->
+  <nfe:det n="1">
+    <nfe:prod>
+      <nfe:cProd>22948</nfe:cProd>
+      <nfe:xProd>CONECTOR USB TIPO-C REF: A-60U</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>2.80</nfe:vUnCom>
+      <nfe:vProd>5.60</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85369090</nfe:NCM>
+      <nfe:CST>0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="2">
+    <nfe:prod>
+      <nfe:cProd>18928</nfe:cProd>
+      <nfe:xProd>CABO C/CONECTOR P2 X RCA 1.5M TVX-1-2/1.5M- AZUL</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>4.60</nfe:vUnCom>
+      <nfe:vProd>13.80</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="3">
+    <nfe:prod>
+      <nfe:cProd>27629</nfe:cProd>
+      <nfe:xProd>CABO P2/3 RCA 1.5M REF: 1-TVX-1-3/1.5M AZUL</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>5.00</nfe:vUnCom>
+      <nfe:vProd>15.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="4">
+    <nfe:prod>
+      <nfe:cProd>32312</nfe:cProd>
+      <nfe:xProd>FONE DE OUVIDO C/MICROF. C/BAG DE TRANSPORTE REF: MO-ER6</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>15.90</nfe:vUnCom>
+      <nfe:vProd>31.80</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85183000</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="5">
+    <nfe:prod>
+      <nfe:cProd>19903</nfe:cProd>
+      <nfe:xProd>CABO DE AUDIO IOS PARA P2 FEMEA REF: LE-0154</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>9.90</nfe:vUnCom>
+      <nfe:vProd>19.80</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="6">
+    <nfe:prod>
+      <nfe:cProd>20558</nfe:cProd>
+      <nfe:xProd>FONE DE OUVIDO LELONG REF: LE-0239</nfe:xProd>
+      <nfe:qCom>5.00</nfe:qCom>
+      <nfe:vUnCom>2.40</nfe:vUnCom>
+      <nfe:vProd>12.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85183000</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="7">
+    <nfe:prod>
+      <nfe:cProd>30271</nfe:cProd>
+      <nfe:xProd>FONE DE OUVIDO LELONG REF: LE-0242</nfe:xProd>
+      <nfe:qCom>9.00</nfe:qCom>
+      <nfe:vUnCom>2.50</nfe:vUnCom>
+      <nfe:vProd>22.50</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85189090</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="8">
+    <nfe:prod>
+      <nfe:cProd>33693</nfe:cProd>
+      <nfe:xProd>CABO C/ADAPTADOR USB TIPO-C REF: TPC-OTG-H</nfe:xProd>
+      <nfe:qCom>1.00</nfe:qCom>
+      <nfe:vUnCom>3.30</nfe:vUnCom>
+      <nfe:vProd>3.30</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="9">
+    <nfe:prod>
+      <nfe:cProd>15377</nfe:cProd>
+      <nfe:xProd>FONE DE OUVIDO REF: EJ-V02</nfe:xProd>
+      <nfe:qCom>1.00</nfe:qCom>
+      <nfe:vUnCom>5.90</nfe:vUnCom>
+      <nfe:vProd>5.90</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85183000</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="10">
+    <nfe:prod>
+      <nfe:cProd>25375</nfe:cProd>
+      <nfe:xProd>CARREGADOR V8 2.1A REF: CDQ-ZS01 CDQ-ZS02 SACO</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>3.99</nfe:vUnCom>
+      <nfe:vProd>11.97</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85044010</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="11">
+    <nfe:prod>
+      <nfe:cProd>15377</nfe:cProd>
+      <nfe:xProd>FONE DE OUVIDO REF: EJ-V02</nfe:xProd>
+      <nfe:qCom>1.00</nfe:qCom>
+      <nfe:vUnCom>5.90</nfe:vUnCom>
+      <nfe:vProd>5.90</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85183000</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="12">
+    <nfe:prod>
+      <nfe:cProd>33693</nfe:cProd>
+      <nfe:xProd>CABO C/ADAPTADOR USB TIPO-C REF: TPC-OTG-H</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>3.30</nfe:vUnCom>
+      <nfe:vProd>6.60</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="13">
+    <nfe:prod>
+      <nfe:cProd>22948</nfe:cProd>
+      <nfe:xProd>CONECTOR USB TIPO-C REF: A-60U</nfe:xProd>
+      <nfe:qCom>1.00</nfe:qCom>
+      <nfe:vUnCom>2.80</nfe:vUnCom>
+      <nfe:vProd>2.80</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85369090</nfe:NCM>
+      <nfe:CST>0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="14">
+    <nfe:prod>
+      <nfe:cProd>30107</nfe:cProd>
+      <nfe:xProd>CABO DE AV 3RCA X 3RCA REF.: KP-RCA01 3M</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>3.80</nfe:vUnCom>
+      <nfe:vProd>11.40</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="15">
+    <nfe:prod>
+      <nfe:cProd>14427</nfe:cProd>
+      <nfe:xProd>CABO DE AUDIO P2 + P2 MACHO 1,5M REF: MB51004</nfe:xProd>
+      <nfe:qCom>6.00</nfe:qCom>
+      <nfe:vUnCom>2.00</nfe:vUnCom>
+      <nfe:vProd>12.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="16">
+    <nfe:prod>
+      <nfe:cProd>36408</nfe:cProd>
+      <nfe:xProd>ADAPTADOR P10 FEMEA X P2 (MACHO) - KNUP REF.: KP-HM01</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>3.50</nfe:vUnCom>
+      <nfe:vProd>7.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85369090</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="17">
+    <nfe:prod>
+      <nfe:cProd>22338</nfe:cProd>
+      <nfe:xProd>CABO HDMI MACHO X MACHO 1,5M REF.: HDM-15</nfe:xProd>
+      <nfe:qCom>1.00</nfe:qCom>
+      <nfe:vUnCom>9.90</nfe:vUnCom>
+      <nfe:vProd>9.90</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="18">
+    <nfe:prod>
+      <nfe:cProd>33122</nfe:cProd>
+      <nfe:xProd>CABO USB TIPO-C MACHO X USB A MACHO 1M REF: UC-A1</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>4.50</nfe:vUnCom>
+      <nfe:vProd>13.50</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="19">
+    <nfe:prod>
+      <nfe:cProd>31245</nfe:cProd>
+      <nfe:xProd>CABO P3 + 2 RCA 1,5M REF.: KP-P3RCA</nfe:xProd>
+      <nfe:qCom>4.00</nfe:qCom>
+      <nfe:vUnCom>5.00</nfe:vUnCom>
+      <nfe:vProd>20.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="20">
+    <nfe:prod>
+      <nfe:cProd>30109</nfe:cProd>
+      <nfe:xProd>CARREGADOR PAREDE V8 2.1A REF: CDQ-ZS03</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>4.20</nfe:vUnCom>
+      <nfe:vProd>12.60</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85044010</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="21">
+    <nfe:prod>
+      <nfe:cProd>15488</nfe:cProd>
+      <nfe:xProd>FONE DE OUVIDO REF: EJ-V03</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>6.50</nfe:vUnCom>
+      <nfe:vProd>13.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85183000</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="22">
+    <nfe:prod>
+      <nfe:cProd>29100</nfe:cProd>
+      <nfe:xProd>CABO DE REDE RJ45 1M REF: NET-01</nfe:xProd>
+      <nfe:qCom>5.00</nfe:qCom>
+      <nfe:vUnCom>2.50</nfe:vUnCom>
+      <nfe:vProd>12.50</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="23">
+    <nfe:prod>
+      <nfe:cProd>30221</nfe:cProd>
+      <nfe:xProd>CABO USB 2.0 A/M X B/M 1M REF: USB-01</nfe:xProd>
+      <nfe:qCom>3.00</nfe:qCom>
+      <nfe:vUnCom>3.20</nfe:vUnCom>
+      <nfe:vProd>9.60</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="24">
+    <nfe:prod>
+      <nfe:cProd>31999</nfe:cProd>
+      <nfe:xProd>ADAPTADOR USB FEMEA X MICRO USB MACHO REF: USB-MC01</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>4.00</nfe:vUnCom>
+      <nfe:vProd>8.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85369090</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="25">
+    <nfe:prod>
+      <nfe:cProd>31234</nfe:cProd>
+      <nfe:xProd>CABO HDMI MACHO X MACHO 2M REF: HDM-20</nfe:xProd>
+      <nfe:qCom>1.00</nfe:qCom>
+      <nfe:vUnCom>12.00</nfe:vUnCom>
+      <nfe:vProd>12.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+  <nfe:det n="26">
+    <nfe:prod>
+      <nfe:cProd>33444</nfe:cProd>
+      <nfe:xProd>CABO USB TIPO-C MACHO X USB A MACHO 2M REF: UC-A2</nfe:xProd>
+      <nfe:qCom>2.00</nfe:qCom>
+      <nfe:vUnCom>6.00</nfe:vUnCom>
+      <nfe:vProd>12.00</nfe:vProd>
+      <nfe:CFOP>5102</nfe:CFOP>
+      <nfe:NCM>85444200</nfe:NCM>
+      <nfe:CST>2/0</nfe:CST>
+    </nfe:prod>
+  </nfe:det>
+
+</NFCeSimplificada>
