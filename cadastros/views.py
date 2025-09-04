@@ -16,39 +16,64 @@ logger = logging.getLogger(__name__)
 
 def importar_produtos_from_xml(caminho_arquivo_xml, usuario):
     try:
-        tree = ET.parse(caminho_arquivo_xml)
-        root = tree.getroot()
+        # Lê o XML como texto, forçando UTF-8 e substituindo caracteres inválidos
+        with open(caminho_arquivo_xml, 'r', encoding='utf-8', errors='replace') as f:
+            xml_content = f.read()
 
-        # Definir o namespace do XML
+        # Corrige '&' soltos que quebram o XML
+        xml_content = xml_content.replace('&', '&amp;')
+
+        # Carrega o XML já limpo
+        root = ET.fromstring(xml_content)
+
+        # Define namespace do XML da NFe
         ns = {'nfe': 'http://www.portalfiscal.inf.br/nfe'}
 
-        for det in root.findall('.//nfe:det', ns):
-            produto_data = {}
-            prod = det.find('nfe:prod', ns)
-            nome = prod.find('nfe:xProd', ns).text
-            codigo_barras = prod.find('nfe:cProd', ns).text
-            preco_compra = Decimal(prod.find('nfe:vUnCom', ns).text)
+        # Percentual de lucro padrão (80%)
+        lucro_padrao = Decimal('80.0')
 
-            # Verificar se já existe um produto com o mesmo nome
+        # Percorre todos os produtos
+        for det in root.findall('.//nfe:det', ns):
+            prod = det.find('nfe:prod', ns)
+            if prod is None:
+                continue
+
+            nome = prod.find('nfe:xProd', ns).text.strip()
+            codigo_barras = prod.find('nfe:cProd', ns).text.strip()
+            preco_compra = Decimal(prod.find('nfe:vUnCom', ns).text.strip())
+
+            # Calcula preco_venda com 80% de lucro
+            preco_venda = preco_compra * (Decimal('1.0') + lucro_padrao / Decimal('100.0'))
+
+            # Verifica se já existe produto do usuário com mesmo nome
             produto_existente = Produto.objects.filter(nome=nome, usuario=usuario).first()
 
-            # Se existir, atualizar os dados do produto existente
             if produto_existente:
                 produto_existente.codigo_barras = codigo_barras
                 produto_existente.preco_compra = preco_compra
+                produto_existente.preco_venda = preco_venda
+                produto_existente.porcentagem_lucro = lucro_padrao
                 produto_existente.save()
                 logger.info(f"Produto '{produto_existente.nome}' atualizado com sucesso.")
             else:
-                # Caso contrário, criar um novo produto
-                produto_data['usuario'] = usuario
-                produto_data['nome'] = nome
-                produto_data['codigo_barras'] = codigo_barras
-                produto_data['preco_compra'] = preco_compra
-
-                # Criar um objeto Produto com os dados extraídos
-                produto = Produto(**produto_data)
+                produto = Produto(
+                    usuario=usuario,
+                    nome=nome,
+                    codigo_barras=codigo_barras,
+                    preco_compra=preco_compra,
+                    preco_venda=preco_venda,
+                    porcentagem_lucro=lucro_padrao
+                )
                 produto.save()
                 logger.info(f"Produto '{produto.nome}' importado com sucesso.")
+
+    except ET.ParseError as e:
+        # Captura erro de XML malformado e mostra linha problemática
+        logger.error(f"Erro de parse no XML: {e}")
+        with open(caminho_arquivo_xml, 'r', encoding='utf-8', errors='ignore') as f:
+            linhas = f.readlines()
+        if e.position[0] <= len(linhas):
+            logger.error(f"Linha problemática ({e.position[0]}): {linhas[e.position[0]-1]}")
     except Exception as e:
         logger.error(f"Erro ao importar produtos do XML: {str(e)}")
 
